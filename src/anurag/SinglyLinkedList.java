@@ -25,7 +25,7 @@ public class SinglyLinkedList {
 		ListNode third = new ListNode(8);
 		ListNode fourth = new ListNode(11);
 		
-		SinglyLinkedList.head.next = second;
+		sll.head.next = second;
 		second.next = third;
 		third.next = fourth;
 		
@@ -73,6 +73,32 @@ public class SinglyLinkedList {
 		
 		System.out.println("Nth value of SLL from end is : " + sll.findn(3) );
 
+		
+		
+		SinglyLinkedList sortedSll = new SinglyLinkedList();
+		sortedSll.head = new ListNode(1);
+		ListNode sec = new ListNode(1);
+		ListNode thi = new ListNode(10);
+		ListNode fou = new ListNode(12);
+		ListNode fif = new ListNode(15);
+
+		sortedSll.head.next = sec;
+		sec.next = thi;
+		thi.next = fou;
+		fou.next = fif;
+		
+		System.out.println("This is Sorted Linked List: ");
+		sortedSll.display(head);
+		
+		sortedSll.removedupli();
+		System.out.println("This is Sorted Linked List after removing duplicates: ");
+		sortedSll.display(head);
+
+		System.out.println("Insert 11 in Sorted List");
+		sortedSll.insertInSorted(11);
+		sortedSll.display(head);
+
+		
 		
 	}
 
@@ -273,6 +299,41 @@ public static int findn(int n) {
 	}
 	return mainptr.data;
 }
+
+
+//Remove duplicates from sorted LinkedList
+public static void removedupli() {
+	ListNode curr= head;
+	while(curr.next!=null && curr!=null) {
+		
+		if(curr.data == curr.next.data) {
+			curr.next = curr.next.next;
+		}
+		
+		
+		curr = curr.next;
+	}
+}
+
+
+//Insert Node in Sorted List
+public static ListNode insertInSorted(int val) {
+	
+	ListNode node = new ListNode(val);
+	ListNode curr = head;
+	ListNode temp = null;
+	while(curr!=null && curr.data<val) {
+		temp = curr;
+		curr = curr.next;		
+	}
+	node.next = curr;
+	temp.next = node;
+	return head;
+	
+}
+
+
+
 
 
 
